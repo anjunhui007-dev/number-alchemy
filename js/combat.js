@@ -1,0 +1,2 @@
+export const CONFIG={N:1000,hp:2000,mp:300,enemy:5000};
+export function attack(state,a,b){if(!Number.isSafeInteger(a)||!Number.isSafeInteger(b)||a<2||b<2)throw Error('Invalid input');const c=CONFIG.N-a*b,cost=Math.abs(c),mana=Math.min(state.mp,cost),blood=cost-mana,recoil=Math.max(0,-c),damage=c<0?CONFIG.N/2:a*b;return {c,mana,blood,recoil,damage,hp:Math.max(0,state.hp-blood-recoil),mp:state.mp-mana,enemy:Math.max(0,state.enemy-damage)};}
